@@ -4,6 +4,7 @@ import { ApiHandler } from "../"
 import { ApiHandlerOptions, DeepSeekModelId, ModelInfo, deepSeekDefaultModelId, deepSeekModels } from "../../shared/api"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 export class DeepSeekHandler implements ApiHandler {
 	private options: ApiHandlerOptions
@@ -60,6 +61,6 @@ export class DeepSeekHandler implements ApiHandler {
 	}
 
 	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
-		// Implement coordination logic here
+		coordinateModels(otherModels)
 	}
 }

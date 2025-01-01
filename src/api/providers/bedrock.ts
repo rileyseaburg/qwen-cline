@@ -3,6 +3,7 @@ import { Anthropic } from "@anthropic-ai/sdk"
 import { ApiHandler } from "../"
 import { ApiHandlerOptions, bedrockDefaultModelId, BedrockModelId, bedrockModels, ModelInfo } from "../../shared/api"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 // https://docs.anthropic.com/en/api/claude-on-amazon-bedrock
 export class AwsBedrockHandler implements ApiHandler {
@@ -111,6 +112,6 @@ export class AwsBedrockHandler implements ApiHandler {
 	}
 
 	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
-		// Implement coordination logic here
+		 coordinateModels(otherModels)
 	}
 }
