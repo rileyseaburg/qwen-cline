@@ -82,4 +82,8 @@ export class OpenAiNativeHandler implements ApiHandler {
 		}
 		return { id: openAiNativeDefaultModelId, info: openAiNativeModels[openAiNativeDefaultModelId] }
 	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		// Implement coordination logic here
+	}
 }

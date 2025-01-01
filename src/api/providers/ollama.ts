@@ -46,4 +46,8 @@ export class OllamaHandler implements ApiHandler {
 			info: openAiModelInfoSaneDefaults,
 		}
 	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		// Implement coordination logic here
+	}
 }

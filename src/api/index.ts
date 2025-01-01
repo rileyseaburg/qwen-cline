@@ -15,6 +15,7 @@ import { DeepSeekHandler } from "./providers/deepseek"
 export interface ApiHandler {
 	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
 	getModel(): { id: string; info: ModelInfo }
+	coordinateWithOtherModels?(otherModels: ApiHandler[]): void
 }
 
 export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
@@ -43,4 +44,8 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 		default:
 			return new AnthropicHandler(options)
 	}
+}
+
+export function buildAgenticApiHandler(configurations: ApiConfiguration[]): ApiHandler[] {
+	return configurations.map(buildApiHandler)
 }

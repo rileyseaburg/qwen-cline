@@ -173,4 +173,8 @@ export class AnthropicHandler implements ApiHandler {
 		}
 		return { id: anthropicDefaultModelId, info: anthropicModels[anthropicDefaultModelId] }
 	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		// Implement coordination logic here
+	}
 }

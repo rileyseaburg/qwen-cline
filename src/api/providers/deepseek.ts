@@ -58,4 +58,8 @@ export class DeepSeekHandler implements ApiHandler {
 		}
 		return { id: deepSeekDefaultModelId, info: deepSeekModels[deepSeekDefaultModelId] }
 	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		// Implement coordination logic here
+	}
 }

@@ -109,4 +109,8 @@ export class AwsBedrockHandler implements ApiHandler {
 		}
 		return { id: bedrockDefaultModelId, info: bedrockModels[bedrockDefaultModelId] }
 	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		// Implement coordination logic here
+	}
 }
