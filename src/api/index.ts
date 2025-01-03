@@ -15,32 +15,37 @@ import { DeepSeekHandler } from "./providers/deepseek"
 export interface ApiHandler {
 	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
 	getModel(): { id: string; info: ModelInfo }
+	coordinateWithOtherModels?(otherModels: ApiHandler[]): void
 }
 
-export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
+export function buildApiHandler(configuration: ApiConfiguration): ApiHandler[] {
 	const { apiProvider, ...options } = configuration
 	switch (apiProvider) {
 		case "anthropic":
-			return new AnthropicHandler(options)
+			return [new AnthropicHandler(options)]
 		case "openrouter":
-			return new OpenRouterHandler(options)
+			return [new OpenRouterHandler(options)]
 		case "bedrock":
-			return new AwsBedrockHandler(options)
+			return [new AwsBedrockHandler(options)]
 		case "vertex":
-			return new VertexHandler(options)
+			return [new VertexHandler(options)]
 		case "openai":
-			return new OpenAiHandler(options)
+			return [new OpenAiHandler(options)]
 		case "ollama":
-			return new OllamaHandler(options)
+			return [new OllamaHandler(options)]
 		case "lmstudio":
-			return new LmStudioHandler(options)
+			return [new LmStudioHandler(options)]
 		case "gemini":
-			return new GeminiHandler(options)
+			return [new GeminiHandler(options)]
 		case "openai-native":
-			return new OpenAiNativeHandler(options)
+			return [new OpenAiNativeHandler(options)]
 		case "deepseek":
-			return new DeepSeekHandler(options)
+			return [new DeepSeekHandler(options)]
 		default:
-			return new AnthropicHandler(options)
+			return [new AnthropicHandler(options)]
 	}
+}
+
+export function buildAgenticApiHandler(configurations: ApiConfiguration[]): ApiHandler[] {
+	return configurations.flatMap(buildApiHandler)
 }

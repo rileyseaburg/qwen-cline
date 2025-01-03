@@ -202,7 +202,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 	async initClineWithTask(task?: string, images?: string[]) {
 		await this.clearTask() // ensures that an exising task doesn't exist before starting a new one, although this shouldn't be possible since user must clear task before starting a new one
 		const { apiConfiguration, customInstructions, autoApprovalSettings } = await this.getState()
-		this.cline = new Cline(this, apiConfiguration, autoApprovalSettings, customInstructions, task, images)
+		this.cline = new Cline(this, [apiConfiguration], autoApprovalSettings, customInstructions, task, images)
 	}
 
 	async initClineWithHistoryItem(historyItem: HistoryItem) {
@@ -210,7 +210,7 @@ export class ClineProvider implements vscode.WebviewViewProvider {
 		const { apiConfiguration, customInstructions, autoApprovalSettings } = await this.getState()
 		this.cline = new Cline(
 			this,
-			apiConfiguration,
+			[apiConfiguration],
 			autoApprovalSettings,
 			customInstructions,
 			undefined,

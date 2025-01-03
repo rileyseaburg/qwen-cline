@@ -4,6 +4,7 @@ import { ApiHandler } from "../"
 import { ApiHandlerOptions, ModelInfo, openAiModelInfoSaneDefaults } from "../../shared/api"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 export class LmStudioHandler implements ApiHandler {
 	private options: ApiHandlerOptions
@@ -52,5 +53,9 @@ export class LmStudioHandler implements ApiHandler {
 			id: this.options.lmStudioModelId || "",
 			info: openAiModelInfoSaneDefaults,
 		}
+	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		coordinateModels(otherModels)
 	}
 }

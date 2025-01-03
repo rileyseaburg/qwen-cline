@@ -10,6 +10,7 @@ import {
 } from "../../shared/api"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 export class OpenAiNativeHandler implements ApiHandler {
 	private options: ApiHandlerOptions
@@ -81,5 +82,9 @@ export class OpenAiNativeHandler implements ApiHandler {
 			return { id, info: openAiNativeModels[id] }
 		}
 		return { id: openAiNativeDefaultModelId, info: openAiNativeModels[openAiNativeDefaultModelId] }
+	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		coordinateModels(otherModels)
 	}
 }

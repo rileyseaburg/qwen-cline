@@ -9,6 +9,7 @@ import {
 } from "../../shared/api"
 import { ApiHandler } from "../index"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 export class AnthropicHandler implements ApiHandler {
 	private options: ApiHandlerOptions
@@ -172,5 +173,9 @@ export class AnthropicHandler implements ApiHandler {
 			return { id, info: anthropicModels[id] }
 		}
 		return { id: anthropicDefaultModelId, info: anthropicModels[anthropicDefaultModelId] }
+	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		coordinateModels(otherModels)
 	}
 }

@@ -4,6 +4,7 @@ import { ApiHandler } from "../"
 import { ApiHandlerOptions, ModelInfo, openAiModelInfoSaneDefaults } from "../../shared/api"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
+import { coordinateModels } from "../helpers/coordination"
 
 export class OllamaHandler implements ApiHandler {
 	private options: ApiHandlerOptions
@@ -45,5 +46,9 @@ export class OllamaHandler implements ApiHandler {
 			id: this.options.ollamaModelId || "",
 			info: openAiModelInfoSaneDefaults,
 		}
+	}
+
+	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
+		coordinateModels(otherModels)
 	}
 }
