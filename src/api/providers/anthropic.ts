@@ -176,6 +176,6 @@ export class AnthropicHandler implements ApiHandler {
 	}
 
 	coordinateWithOtherModels(otherModels: ApiHandler[]): void {
-		 coordinateModels(otherModels)
+		coordinateModels(otherModels)
 	}
 }
